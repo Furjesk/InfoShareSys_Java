@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.VideoMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Video">
+            <id property="videoid" column="videoId" jdbcType="INTEGER"/>
+            <result property="videourl" column="videoUrl" jdbcType="VARCHAR"/>
+            <result property="videoname" column="videoName" jdbcType="VARCHAR"/>
+            <result property="videolong" column="videoLong" jdbcType="VARCHAR"/>
+            <result property="setid" column="setId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        videoId,videoUrl,videoName,
+        videoLong,setId
+    </sql>
+</mapper>

@@ -1,0 +1,7 @@
+ifs:
+  db:
+    host: localhost
+    pw: 123456
+  py-uri: E:\LFM_GradDesc.py
+  resource-server-url: E:\my_project\NJIT\InfoShareResourceServer\
+  resource-server-request-address: http://localhost:8889 # absolute address

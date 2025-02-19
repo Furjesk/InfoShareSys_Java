@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.MomentMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Moment">
+            <id property="momentid" column="momentId" jdbcType="INTEGER"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="likenum" column="likeNum" jdbcType="INTEGER"/>
+            <result property="commentnum" column="commentNum" jdbcType="INTEGER"/>
+            <result property="transmitnum" column="transmitNum" jdbcType="INTEGER"/>
+            <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+            <result property="userid" column="userId" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="cancomment" column="canComment" jdbcType="TINYINT"/>
+            <result property="subjectid" column="subjectId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        momentId,content,likeNum,
+        commentNum,transmitNum,createtime,userId,
+        status,canComment,subjectId
+    </sql>
+
+<!--    通过reviewIdList和status更新视频集状态-->
+    <update id="updateMomStatusByMomIds">
+        update moment set status = #{status} where momentId in
+        <foreach collection="momentIdList" item="momentId" open="(" close=")" separator=",">
+            #{momentId}
+        </foreach>
+    </update>
+</mapper>

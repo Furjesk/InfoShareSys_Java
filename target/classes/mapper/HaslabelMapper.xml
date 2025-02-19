@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.HaslabelMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Haslabel">
+            <result property="setid" column="setId" jdbcType="INTEGER"/>
+            <result property="groupid" column="groupId" jdbcType="INTEGER"/>
+            <result property="labelid" column="labelId" jdbcType="INTEGER"/>
+            <result property="targettype" column="targetType" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        setId,groupId,
+        labelId,targetType
+    </sql>
+
+</mapper>

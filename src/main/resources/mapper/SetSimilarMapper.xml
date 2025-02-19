@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.SetSimilarMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.SetSimilar">
+            <id property="setid" column="setId" jdbcType="INTEGER"/>
+            <result property="similarSets" column="similar_sets" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        setId,similar_sets
+    </sql>
+</mapper>

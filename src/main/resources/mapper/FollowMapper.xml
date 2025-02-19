@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.FollowMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Follow">
+            <id property="followid" column="followId" jdbcType="INTEGER"/>
+            <id property="followerid" column="followerId" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="followtime" column="followtime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        followId,followerId,status,followtime
+    </sql>
+</mapper>

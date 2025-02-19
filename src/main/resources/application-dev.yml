@@ -1,0 +1,7 @@
+ifs:
+  db:
+    host: mysql
+    pw: 123456
+  py-uri: /public/prod/infosharesys/LFM_GradDesc.py
+  resource-server-url: /upload/
+  resource-server-request-address: http://121.36.249.74:8889 # absolute address

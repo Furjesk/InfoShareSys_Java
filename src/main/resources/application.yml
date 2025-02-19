@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 40MB  		# 设置单个文件最大大小为10MB
+      max-request-size: 150MB  	# 设置多个文件大小为100MB
+
+  #邮箱基本配置
+  mail:
+    #配置smtp服务主机地址
+    host: smtp.qq.com
+    #发送者邮箱
+    username: 774467672@qq.com
+    #配置密码,注意不是真正的密码，而是刚刚申请到的授权码
+    password: wybciohgpjklbbhj
+    #端口号465或587
+    port: 587
+    #默认的邮件编码为UTF-8
+    default-encoding: UTF-8
+
+
+  datasource:
+    url: jdbc:mysql://${ifs.db.host}:3306/info_share_sys
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver #com.mysql.cj.jdbc.Driver
+server:
+  port: 8888
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# python脚本位置
+py-uri: ${ifs.py-uri}
+# 资源服务器地址（模拟）因为放项目文件夹下一旦build就会清空，所以放这里
+resource-server-url: ${ifs.resource-server-url}
+
+resource-server-request-address: ${ifs.resource-server-request-address}

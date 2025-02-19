@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.Category2Mapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Category2">
+            <id property="category2id" column="category2Id" jdbcType="INTEGER"/>
+            <result property="category2name" column="category2Name" jdbcType="VARCHAR"/>
+            <result property="category2brief" column="category2Brief" jdbcType="VARCHAR"/>
+            <result property="category1id" column="category1Id" jdbcType="TINYINT"/>
+            <result property="userid" column="userId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        category2Id,category2Name,category2Brief,
+        category1Id,userId
+    </sql>
+</mapper>

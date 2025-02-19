@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.ReviewMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Review">
+            <result property="reviewid" column="reviewId" jdbcType="INTEGER"/>
+            <result property="managerid" column="managerId" jdbcType="INTEGER"/>
+            <result property="setid" column="setId" jdbcType="INTEGER"/>
+            <result property="momentid" column="momentId" jdbcType="INTEGER"/>
+            <result property="targettype" column="targetType" jdbcType="TINYINT"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+            <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+            <result property="dealtime" column="dealTime" jdbcType="TIMESTAMP"/>
+            <result property="feedback" column="feedback" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        reviewId,managerId,setId,momentId,
+        targetType,status,createtime,
+        dealTime,feedback
+    </sql>
+    <select id="selectReviewByMomIds" resultType="com.njit.infoshareserve.bean.Moment">
+        select subjectName,imgUrl,username,moment.* from moment,users,subject
+        where moment.userId = users.userId and moment.subjectId = subject.subjectId
+        and momentId in
+        <foreach collection="momIds" item="momId" open="(" close=")" separator=",">
+            #{momId}
+        </foreach>
+    </select>
+
+</mapper>

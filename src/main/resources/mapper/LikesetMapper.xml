@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.LikesetMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Likeset">
+            <id property="userid" column="userId" jdbcType="INTEGER"/>
+            <id property="setid" column="setId" jdbcType="INTEGER"/>
+            <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+            <result property="status" column="status" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        userId,setId,createtime,status
+    </sql>
+</mapper>

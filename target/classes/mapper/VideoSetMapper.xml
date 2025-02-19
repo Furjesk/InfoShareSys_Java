@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.VideoSetMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.VideoSet">
+            <id property="setid" column="setId" jdbcType="INTEGER"/>
+            <result property="setimg" column="setImg" jdbcType="VARCHAR"/>
+            <result property="setlong" column="setLong" jdbcType="VARCHAR"/>
+            <result property="setname" column="setName" jdbcType="VARCHAR"/>
+            <result property="setbrief" column="setBrief" jdbcType="VARCHAR"/>
+            <result property="category1id" column="category1Id" jdbcType="INTEGER"/>
+            <result property="category2id" column="category2Id" jdbcType="INTEGER"/>
+            <result property="videotype" column="videoType" jdbcType="CHAR"/>
+            <result property="cannotforward" column="cannotForward" jdbcType="INTEGER"/>
+            <result property="likenum" column="likeNum" jdbcType="INTEGER"/>
+            <result property="favoritenum" column="favoriteNum" jdbcType="INTEGER"/>
+            <result property="commentnum" column="commentNum" jdbcType="INTEGER"/>
+            <result property="transmitnum" column="transmitNum" jdbcType="INTEGER"/>
+            <result property="coinnum" column="coinNum" jdbcType="INTEGER"/>
+            <result property="watchnum" column="watchNum" jdbcType="INTEGER"/>
+            <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+            <result property="userid" column="userId" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="cancomment" column="canComment" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        setId,setImg,setLong,
+        setName,setBrief,category1Id,category2Id,
+        videoType,cannotForward,likeNum,
+        favoriteNum,commentNum,transmitNum,
+        coinNum,watchNum,createtime,
+        userId,status,canComment
+    </sql>
+
+    <!--    public Boolean updateReviewStatus(Integer status, List<Integer> reviewIdList);-->
+    <update id="updateSetStatusByReviewIds">
+        update videoset set status = #{status} where setId in
+        (select setId from review where reviewId in
+        <foreach collection="reviewIdList" item="reviewId" open="(" close=")" separator=",">
+            #{reviewId}
+        </foreach>)
+    </update>
+
+<!--    public List<VideoSet> selectRecentHotSet();-->
+<!--    两个临时派生表 -->
+    <select id="selectRecentHotSet" resultType="com.njit.infoshareserve.bean.VideoSet">
+        select like_of_month.yearmonth,like_count,comment_count,videoset.*
+        from videoset
+            left join (select setId,count(setId) as like_count,date_format(createtime,'%y-%m') as yearmonth from likeset where status=1) as like_of_month
+            on videoset.setId = like_of_month.setId
+            left join (select setId,count(setId) as comment_count,date_format(createtime,'yyyy-mm') as yearmonth from setcomment) as comment_of_month
+            on videoset.setId = comment_of_month.setId
+        group by like_of_month.yearmonth,videoset.setId
+        order by like_of_month.yearmonth desc,like_count desc,comment_count desc;
+    </select>
+
+<!--    通过推荐id列表获得视频集和username -->
+<!--    public List<VideoSet> selectSetsByIds(List<Integer> serIdList);-->
+    <select id="selectSetsByIds" resultType="com.njit.infoshareserve.bean.VideoSet">
+        select username,videoset.* from users,videoset
+        where users.userId = videoset.userId and setId in
+        <foreach collection="serIdList" item="setId" open="(" close=")" separator=",">
+            #{setId}
+        </foreach>
+    </select>
+
+</mapper>

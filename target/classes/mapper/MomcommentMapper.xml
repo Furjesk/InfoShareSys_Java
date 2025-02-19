@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.njit.infoshareserve.mapper.MomcommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.njit.infoshareserve.bean.Momcomment">
+            <id property="commentid" column="commentId" jdbcType="INTEGER"/>
+            <result property="userid" column="userId" jdbcType="INTEGER"/>
+            <result property="momentid" column="momentId" jdbcType="INTEGER"/>
+            <result property="createtime" column="createtime" jdbcType="TIMESTAMP"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="likenum" column="likeNum" jdbcType="INTEGER"/>
+            <result property="fatherid" column="fatherId" jdbcType="INTEGER"/>
+            <result property="commentlevel" column="commentLevel" jdbcType="TINYINT"/>
+            <result property="topcommentid" column="topCommentId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        commentId,userId,momentId,
+        createtime,content,likeNum,
+        fatherId,commentLevel,topCommentId
+    </sql>
+</mapper>
